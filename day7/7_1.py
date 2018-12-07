@@ -5,7 +5,6 @@ def get_input():
     return open(input_file, 'r').read()
 
 def main():
-    answer = 0
     deps = set()
     lines = get_input().splitlines()
     for line in lines:
