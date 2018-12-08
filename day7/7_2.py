@@ -38,7 +38,7 @@ def main():
         new_deps = set(d for d in deps if d[0] != node)
         return new_deps
 
-    elves = [None] * 4
+    elves = [None] * 5
     count = 0
 
     while len(done) < len(nodes):
@@ -49,15 +49,13 @@ def main():
 
             node_costs[elves[i]] -= 1
 
-        print(elves)
         for i in range(len(elves)):
             if node_costs[elves[i]] == 0:
                 deps = remove_finished(elves[i])
                 in_progress.remove(elves[i])
                 elves[i] = None
  
-        if len(done) < len(nodes):
-            count += 1
+        count += 1
 
     return count
 
