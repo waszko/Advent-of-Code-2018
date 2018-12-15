@@ -1,38 +1,24 @@
 from copy import deepcopy
+from dataclasses import dataclass
 
 input_file = "input.txt"
 
 def get_input():
     return open(input_file, 'r').read()
 
+@dataclass(unsafe_hash=True)
 class Creature:
-    def __init__(self, char, x, y):
-        self.type = char
-        self.x = x
-        self.y = y
-        self.hp = 200
-        self.attack = 3
-
-    def __repr__(self):
-        return (self.type + ":(" + 
-            str(self.x) + "," +
-            str(self.y) + "):" +
-            str(self.hp))
+    type: str
+    x: int
+    y: int
+    hp: int = 200
+    attack: int = 3
 
 def creature_sort(c):
     return (1000 * c.y) + c.x
 
 def main():
     cave = get_input().splitlines()
-    cave0 = [
-        "#######",
-        "#.G...#",
-        "#...EG#",
-        "#.#.#G#",
-        "#..G#E#",
-        "#.....#",
-        "#######"
-    ]
     cave = [list(line) for line in cave]
     y_size = len(cave)
     x_size = len(cave[0])
@@ -41,7 +27,7 @@ def main():
     for y in range(y_size):
         for x in range(x_size):
             if cave[y][x] in ['G', 'E']: 
-                creatures.append(Creature(cave[y][x], x, y))
+                creatures.append(Creature(type=cave[y][x], x=x, y=y))
 
     elf_attack = 4
     survived = False
