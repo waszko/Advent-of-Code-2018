@@ -74,7 +74,6 @@ def get_opcodes():
 def main():
     opcodes = get_opcodes()
 
-    # gather samples
     lines = get_input().splitlines()
     ip_reg = int(lines[0].split()[1])
     lines = lines[1:]
